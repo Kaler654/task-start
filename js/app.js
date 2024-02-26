@@ -1,13 +1,16 @@
-function initApp(){
-  let appInit = document.createElement('p')
-  appInit.style.display = 'none'
-  appInit.innerHTML = 'Приложение создано и работает'
+import {productsTable} from "./data.js";
 
-  document.body.appendChild(appInit)
+
+function initApp() {
+    let appInit = document.createElement("p");
+    appInit.style.display = "none";
+    appInit.innerHTML = "Приложение создано и работает";
+    document.body.appendChild(appInit);
+    console.log(productsTable);
 }
 
 function app() {
-  initApp()
+    initApp();
 }
 
-app()
+app();
