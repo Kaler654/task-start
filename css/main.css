@@ -1,0 +1,96 @@
+/* montserrat-regular - cyrillic_latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/montserrat-v26-cyrillic_latin-regular.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* montserrat-700 - cyrillic_latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/montserrat-v26-cyrillic_latin-700.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+:root {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.main {
+    flex: 1 1 auto;
+}
+
+.table {
+    table-layout: auto;
+    color: #000;
+    border-collapse: collapse;
+}
+
+.cell-header,
+.table__cell {
+    padding: 10px;
+    font-size: 1.6rem;
+    text-align: center;
+    border: 1px solid #000;
+}
+
+.table__header {
+}
+
+.table__header .table__row {
+}
+
+.table__body {
+
+}
+
+
+.table__body .table__row:nth-child(odd) {
+    background-color: #a8a8a8;
+}
+
+
+.table__body .table__row>.table__cell:first-child {
+    font-weight: 700;
+}
+
+.table__body .table__row>.table__cell:nth-child(2) {
+    text-align: left;
+}
+
+
+.table__button {
+    width: 35px;
+    height: 35px;
+    font-size: 2.4rem;
+    border-radius: 3px;
+    background-color: #e5e5e5;
+    transition: 0.3s all;
+}
+
+.button_add:hover {
+    background-color: #8dffa7;
+}
+
+.button_del:hover {
+    background-color: #fba19e;
+}
+
+
