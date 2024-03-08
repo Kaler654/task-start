@@ -28,9 +28,50 @@
             </thead>
             <tbody class="table__body"></tbody>
         </table>
+        <form method="post" class="form">
+            <h2 class="form__title">Добавление товара</h2>
+            <fieldset class="form__section">
+                <p class="form__input">
+                    <label class="form__label" for="product_article">
+                        <span>Артикул: </span>
+                    </label>
+                    <input type="text" id="product_article" name="article" tabindex="1" />
+                </p>
+
+                <p class="form__input">
+                    <label for="product_name">
+                        <span>Наименование товара: </span>
+                    </label>
+                    <input type="text" id="product_name" name="productName" tabindex="2" required />
+                </p>
+
+                <p class="form__input">
+                    <label for="purchase_price">
+                        <span>Закупочная стоимость: </span>
+                    </label>
+                    <input type="text" id="purchase_price" name="purchasePrice" tabindex="3" required />
+                </p>
+
+                <p class="form__input">
+                    <label for="selling_price">
+                        <span>Стоимость продажи: </span>
+                    </label>
+                    <input type="text" id="selling_price" name="sellingPrice" tabindex="4" required />
+                </p>
+
+                <p class="form__input">
+                    <label for="sales_quantity">
+                        <span>Количество продаж: </span>
+                    </label>
+                    <input type="text" id="sales_quantity" name="salesQuantity" tabindex="5" />
+                </p>
+
+            </fieldset>
+
+            <button class="submit" type="submit" tabindex="7">Добавить</button>
+        </form>
     </main>
 
     <footer class="footer"></footer>
-</div
 </body>
 </html>

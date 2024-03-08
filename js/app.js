@@ -9,12 +9,12 @@ class Product {
     #salesQuantity;
     #salesProfit;
 
-    constructor(article, productName, purchasePrice, sellingPrice, salesQuantity, salesProfit) {
+    constructor(article, productName, purchasePrice, sellingPrice, salesQuantity) {
         this.#article = article;
         this.#productName = productName;
-        this.#purchasePrice = purchasePrice;
-        this.#sellingPrice = sellingPrice;
-        this.#salesQuantity = salesQuantity;
+        this.#purchasePrice = Number(purchasePrice);
+        this.#sellingPrice = Number(sellingPrice);
+        this.#salesQuantity = Number(salesQuantity);
         this.#salesProfit = this.calculateProfit();
     }
 
@@ -81,7 +81,6 @@ class Product {
         };
     }
 
-
 }
 
 let products = createProducts(productsTable);
@@ -91,7 +90,7 @@ function createProducts(productsArray) {
     const products = [];
 
     for (const productObject of productsArray) {
-        const product = new Product(productObject["article"], productObject["productName"], productObject["purchasePrice"], productObject["sellingPrice"], productObject["salesQuantity"], productObject["salesProfit"]);
+        const product = new Product(productObject["article"], productObject["productName"], productObject["purchasePrice"], productObject["sellingPrice"], productObject["salesQuantity"]);
         products.push(product);
     }
 
@@ -104,40 +103,49 @@ function sortProducts(products) {
 }
 
 function getButtons(product) {
+    // Создаем кнопки добавления и отмены продажи, вешаем на них слушатели события по клику
     const tdButtonAdd = document.createElement("td");
     tdButtonAdd.classList.add("table__cell");
+
     const btnAdd = document.createElement("button");
     btnAdd.textContent = "+";
     btnAdd.classList.add("table__button", "button_add");
     btnAdd.addEventListener("click", function() {
+        // Добавялем продажу и заново рендерим таблицу
         product.salesQuantity += 1;
-        console.log(product.salesQuantity);
+        product.salesProfit = product.calculateProfit();
         renderTable();
     });
+
     tdButtonAdd.appendChild(btnAdd);
+
 
     const tdButtonDel = document.createElement("td");
     tdButtonDel.classList.add("table__cell");
+
     const btnDel = document.createElement("button");
     btnDel.textContent = "-";
     btnDel.classList.add("table__button", "button_del");
     btnDel.addEventListener("click", function() {
         product.salesQuantity -= 1;
-        console.log(product.salesQuantity);
+        product.salesProfit = product.calculateProfit();
         renderTable();
     });
+
     tdButtonDel.appendChild(btnDel);
 
     return [tdButtonAdd, tdButtonDel];
 }
 
 function renderRow(product) {
+    // Получаем таблицу и создаем строку для её дальнейшего заполнения
     const tableBody = document.querySelector(".table__body");
     const tr = document.createElement("tr");
     tr.classList.add("table__row");
 
     const productProps = product.getProductData();
-    console.log();
+
+    // Проходимся по всем свойствам товара и формируем строку таблицы
     Object.keys(productProps).forEach(key => {
         const td = document.createElement("td");
         td.textContent = productProps[key];
@@ -156,14 +164,14 @@ function renderRow(product) {
 }
 
 function renderTable() {
+    // Удаляем все текущие строки таблицы
     const tableBody = document.querySelector(".table__body");
     tableBody.innerHTML = "";
 
+    // Проходимся по каждому товару и добавялем его в таблицу
     products.forEach(product => {
-        console.log(product.salesQuantity);
         renderRow(product);
     });
-    console.log("\n");
 }
 
 function initApp() {
@@ -173,5 +181,23 @@ function initApp() {
 function app() {
     initApp();
 }
+
+
+const form = document.querySelector(".form");
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+
+    data["article"] = data["article"] ? data["article"] : products.at(-1).article + 1;
+    data["salesQuantity"] = data["salesQuantity"] ? Number(data["salesQuantity"]) : 0;
+
+    const newProduct = new Product(...Object.values(data));
+    products.push(newProduct);
+    form.reset();
+    renderTable();
+
+});
 
 app();

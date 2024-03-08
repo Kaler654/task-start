@@ -35,12 +35,17 @@
 
 .main {
     flex: 1 1 auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
 }
 
 .table {
     table-layout: auto;
     color: #000;
     border-collapse: collapse;
+    width: 100rem;
+    margin-right: 10rem;
 }
 
 .cell-header,
@@ -51,27 +56,17 @@
     border: 1px solid #000;
 }
 
-.table__header {
-}
-
-.table__header .table__row {
-}
-
-.table__body {
-
-}
-
 
 .table__body .table__row:nth-child(odd) {
     background-color: #a8a8a8;
 }
 
 
-.table__body .table__row>.table__cell:first-child {
+.table__body .table__row > .table__cell:first-child {
     font-weight: 700;
 }
 
-.table__body .table__row>.table__cell:nth-child(2) {
+.table__body .table__row > .table__cell:nth-child(2) {
     text-align: left;
 }
 
@@ -93,4 +88,71 @@
     background-color: #fba19e;
 }
 
+.table__row {
+    transition: 0.5s all;
+}
 
+.table__body .table__row:hover {
+    position: relative;
+    transform: translateY(-1px);
+    background-color: rgba(244, 162, 111, 0.53);
+}
+
+
+.form {
+    margin-lefte: 10rem;
+}
+
+.form__title {
+    font-size: 3.6rem;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.form__section {
+    border: 1px solid #000;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.form__input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form__input span {
+    font-size: 2rem;
+}
+
+.form__input input {
+    border: 1px solid #000;
+    width: 20rem;
+    height: 3rem;
+
+}
+
+.form__input label {
+    margin-bottom: 0.5rem;
+}
+
+
+.submit {
+    border: 1px solid #999999;
+    padding: 1rem;
+    font-size: 1.8rem;
+}
+
+
+@media (max-width: 1440px) {
+    .main {
+        flex-wrap: wrap;
+    }
+
+    .table {
+        margin-bottom: 10rem;
+        margin-right: 0;
+        max-width: 100%;
+    }
+}
